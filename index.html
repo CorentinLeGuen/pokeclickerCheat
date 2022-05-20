@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pokeclicker Cheat Engine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-md">
+        <h1 class="text-center">Pokeclicker Cheat Engine</h1>
+        <div class="mb-3">
+            <label for="fileinput" class="form-label"></label>
+            <input class="form-control" type="file" id="fileinput">
+        </div>
+
+        <!-- ---->
+        <h5 class="text-center" id="version">-</h5>
+
+        <span id="load-error" hidden="hidden">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Oups.</strong> Something went wrong with your save file... Send us a message !
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </span>
+
+
+        <span id="toggle" hidden="hidden">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Player infos
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="mb-3 row">
+                                <label for="playername" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="playername" placeholder="">
+                                </div>
+                                <label for="trainer" class="col-sm-2 col-form-label">Trainer number</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="trainer" placeholder="">
+                                </div>
+                                <label for="pokemon" class="col-sm-2 col-form-label">Pokemon</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group col-sm-8">
+                                        <input type="number" class="form-control" id="pokemon"
+                                            aria-label="Text input with checkbox">
+                                        <div class="input-group-text">
+                                            <span>Is shiny ? </span>
+                                            <input class="form-check-input sm-2" type="checkbox" value=""
+                                                aria-label="Is shiny">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Eggs breeding
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Money / Inventory
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Pokedex
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- --->
+
+            <hr />
+
+            <div class="container">
+                <div class="d-grid gap-2">
+                    <button type="button" id="download" class="btn btn-large btn-outline-primary">Download altered
+                        file</button>
+                </div>
+            </div>
+        </span>
+    </div>
+
+    <script type="text/javascript">
+        var save = {
+            some: "stuffs",
+            alot: "of them!"
+        }
+
+        function readSingleFile(evt) {
+            var f = evt.target.files[0];
+
+            if (f) {
+                var r = new FileReader();
+                r.onload = function (e) {
+                    var content_b64 = e.target.result;
+                    try {
+                        var contents = JSON.parse(atob(content_b64));
+                    } catch (err) {
+
+                        document.getElementById('load-error').removeAttribute("hidden");
+                        return;
+                    }
+
+                    save = contents;
+
+                    document.getElementById('toggle').removeAttribute("hidden")
+
+                    document.getElementById('playername').placeholder = contents.save.profile.name;
+                    document.getElementById('trainer').placeholder = contents.save.profile.trainer;
+
+                    document.getElementById('version').innerHTML = 'version : ' + contents.save.update.version;
+                }
+                r.readAsText(f);
+
+            }
+        }
+
+        download.onclick = (function () {
+            let j = document.createElement("a");
+            j.download = "poke-cheat-engine_" + Date.now() + ".txt";
+            j.href = URL.createObjectURL(
+                new Blob([btoa(JSON.stringify(save, null, 2))])
+            );
+            j.click()
+        });
+
+        document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
