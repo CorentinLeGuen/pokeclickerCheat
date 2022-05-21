@@ -56,10 +56,17 @@
                                             aria-label="Text input with checkbox">
                                         <div class="input-group-text">
                                             <span>Is shiny ? </span>
-                                            <input class="form-check-input sm-2" type="checkbox" value=""
+                                            <input class="form-check-input sm-2" id="trainer-shiny" type="checkbox" value="false"
                                                 aria-label="Is shiny">
                                         </div>
                                     </div>
+                                </div>
+                                <label for="background" class="col-sm-2 col-form-label">Background</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" id="background" placeholder="">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="color" class="form-control" id="colorpicker" value="#000000">
                                 </div>
                             </div>
                         </div>
@@ -75,7 +82,9 @@
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
+                            <div class="mb-3 row">
 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,7 +131,7 @@
     </div>
 
     <script type="text/javascript">
-        var save = {
+        var updated_content = {
             some: "stuffs",
             alot: "of them!"
         }
@@ -142,12 +151,17 @@
                         return;
                     }
 
-                    save = contents;
+                    updated_content = contents;
 
                     document.getElementById('toggle').removeAttribute("hidden")
 
+                    // player
                     document.getElementById('playername').placeholder = contents.save.profile.name;
                     document.getElementById('trainer').placeholder = contents.save.profile.trainer;
+                    document.getElementById('colorpicker').defaultValue = contents.save.profile.textColor;
+                    document.getElementById('pokemon').value = contents.save.profile.pokemon;
+                    document.getElementById('trainer-shiny').checked = contents.save.profile.pokemonShiny;
+                    document.getElementById('background').placeholder = contents.save.profile.background;
 
                     document.getElementById('version').innerHTML = 'version : ' + contents.save.update.version;
                 }
@@ -159,8 +173,16 @@
         download.onclick = (function () {
             let j = document.createElement("a");
             j.download = "poke-cheat-engine_" + Date.now() + ".txt";
+
+            updated_content.save.profile.name = document.getElementById('playername').value;
+            updated_content.save.profile.trainer = document.getElementById('trainer').value;
+            updated_content.save.profile.textColor = document.getElementById('colorpicker').value;
+            updated_content.save.profile.pokemon = document.getElementById('pokemon').value;
+            updated_content.save.profile.pokemonShiny = document.getElementById('trainer-shiny').checked;
+            updated_content.save.profile.background = document.getElementById('background').value;
+
             j.href = URL.createObjectURL(
-                new Blob([btoa(JSON.stringify(save, null, 2))])
+                new Blob([btoa(JSON.stringify(updated_content, null, 2))])
             );
             j.click()
         });
