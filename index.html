@@ -25,7 +25,16 @@
         </div>
 
         <!-- ---->
-        <h5 class="text-center" id="version">-</h5>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h5 class="text-center">Supported version : 0.9.3</h5>
+                </div>
+                <div class="col-sm">
+                    <h5 class="text-center" id="version">-</h5>
+                </div>
+            </div>
+        </div>
 
         <span id="load-error" hidden="hidden">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -63,8 +72,8 @@
                                             aria-label="Text input with checkbox">
                                         <div class="input-group-text">
                                             <span>Is shiny ? </span>
-                                            <input class="form-check-input sm-2" id="trainer-shiny" type="checkbox" value="false"
-                                                aria-label="Is shiny">
+                                            <input class="form-check-input sm-2" id="trainer-shiny" type="checkbox"
+                                                value="false" aria-label="Is shiny">
                                         </div>
                                     </div>
                                 </div>
@@ -83,14 +92,42 @@
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Eggs breeding
+                            Eggs breeding - list of eggs
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="mb-3 row">
-
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md border">
+                                            <h6>Egg 1</h6>
+                                            <label for="egg1name" class="col-form-label">Pokemon</label>
+                                            <input type="text" class="form-control" id="egg1name" placeholder="">
+                                            <label for="egg1totalsteps" class="col-form-label">Total steps</label>
+                                            <input type="number" class="form-control" id="egg1totalsteps"
+                                                placeholder="">
+                                            <label for="egg1steps" class="col-form-label">Current steps</label>
+                                            <input type="number" class="form-control" id="egg1steps" placeholder="">
+                                            <label for="egg1shinychance" class="col-form-label">Shiny chances</label>
+                                            <input type="number" class="form-control" id="egg1shinychance"
+                                                placeholder="">
+                                        </div>
+                                        <div class="col-md border">
+                                            <h6>Egg 2</h6>
+                                            2
+                                        </div>
+                                        <div class="col-md border">
+                                            <h6>Egg 3</h6>
+                                            3
+                                        </div>
+                                        <div class="col-md border">
+                                            <h6>Egg 4</h6>
+                                            4
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -170,7 +207,13 @@
                     document.getElementById('trainer-shiny').checked = contents.save.profile.pokemonShiny;
                     document.getElementById('background').placeholder = contents.save.profile.background;
 
-                    document.getElementById('version').innerHTML = 'version : ' + contents.save.update.version;
+                    // eggs
+                    document.getElementById('egg1name').placeholder = contents.save.breeding.eggList[0].pokemon;
+                    document.getElementById('egg1totalsteps').placeholder = contents.save.breeding.eggList[0].totalSteps;
+                    document.getElementById('egg1steps').placeholder = contents.save.breeding.eggList[0].steps;
+                    document.getElementById('egg1shinychance').placeholder = contents.save.breeding.eggList[0].shinyChance;
+
+                    document.getElementById('version').innerHTML = 'Actual version : ' + contents.save.update.version;
                 }
                 r.readAsText(f);
 
@@ -181,12 +224,37 @@
             let j = document.createElement("a");
             j.download = "poke-cheat-engine_" + Date.now() + ".txt";
 
-            updated_content.save.profile.name = document.getElementById('playername').value;
-            updated_content.save.profile.trainer = document.getElementById('trainer').value;
-            updated_content.save.profile.textColor = document.getElementById('colorpicker').value;
-            updated_content.save.profile.pokemon = document.getElementById('pokemon').value;
+            // player
+            if (document.getElementById('playername').value) {
+                updated_content.save.profile.name = document.getElementById('playername').value;
+            }
+            if (document.getElementById('trainer').value) {
+                updated_content.save.profile.trainer = document.getElementById('trainer').value;
+            }
+            if (document.getElementById('colorpicker').value) {
+                updated_content.save.profile.textColor = document.getElementById('colorpicker').value;
+            }
+            if (document.getElementById('pokemon').value) {
+                updated_content.save.profile.pokemon = document.getElementById('pokemon').value;
+            }
             updated_content.save.profile.pokemonShiny = document.getElementById('trainer-shiny').checked;
-            updated_content.save.profile.background = document.getElementById('background').value;
+            if (document.getElementById('background').value) {
+                updated_content.save.profile.background = document.getElementById('background').value;
+            }
+
+            // eggs
+            if (document.getElementById('egg1name').value) {
+                updated_content.save.breeding.eggList[0].pokemon = document.getElementById('egg1name').value;
+            }
+            if (document.getElementById('egg1totalsteps').value) {
+                updated_content.save.breeding.eggList[0].totalSteps = document.getElementById('egg1totalsteps').value;
+            }
+            if (document.getElementById('egg1steps').value) {
+                updated_content.save.breeding.eggList[0].steps = document.getElementById('egg1steps').value;
+            }
+            if (document.getElementById('egg1shinychance').value) {
+                updated_content.save.breeding.eggList[0].shinyChance = document.getElementById('egg1shinychance').value
+            }
 
             j.href = URL.createObjectURL(
                 new Blob([btoa(JSON.stringify(updated_content, null, 2))])
