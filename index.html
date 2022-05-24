@@ -51,7 +51,7 @@
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Player infos
+                            Player infos / display
                         </button>
                     </h2>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
@@ -164,26 +164,12 @@
                     <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Money / Inventory
+                            Inventory
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Pokedex
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
+                        <div class="accordion-body" id="items">
 
                         </div>
                     </div>
@@ -245,25 +231,33 @@
 
                     // eggs
                     //      1
-                    document.getElementById('egg1name').placeholder = contents.save.breeding.eggList[0].pokemon;
-                    document.getElementById('egg1totalsteps').placeholder = contents.save.breeding.eggList[0].totalSteps;
-                    document.getElementById('egg1steps').placeholder = contents.save.breeding.eggList[0].steps;
-                    document.getElementById('egg1shinychance').placeholder = contents.save.breeding.eggList[0].shinyChance;
+                    if (contents.save.breeding.eggList[0].pokemon !== 'MissingNo.') {
+                        document.getElementById('egg1name').placeholder = contents.save.breeding.eggList[0].pokemon;
+                        document.getElementById('egg1totalsteps').placeholder = contents.save.breeding.eggList[0].totalSteps;
+                        document.getElementById('egg1steps').placeholder = contents.save.breeding.eggList[0].steps;
+                        document.getElementById('egg1shinychance').placeholder = contents.save.breeding.eggList[0].shinyChance;
+                    }
                     //      2
-                    document.getElementById('egg2name').placeholder = contents.save.breeding.eggList[1].pokemon;
-                    document.getElementById('egg2totalsteps').placeholder = contents.save.breeding.eggList[1].totalSteps;
-                    document.getElementById('egg2steps').placeholder = contents.save.breeding.eggList[1].steps;
-                    document.getElementById('egg2shinychance').placeholder = contents.save.breeding.eggList[1].shinyChance;
+                    if (contents.save.breeding.eggList[1].pokemon !== 'MissingNo.') {
+                        document.getElementById('egg2name').placeholder = contents.save.breeding.eggList[1].pokemon;
+                        document.getElementById('egg2totalsteps').placeholder = contents.save.breeding.eggList[1].totalSteps;
+                        document.getElementById('egg2steps').placeholder = contents.save.breeding.eggList[1].steps;
+                        document.getElementById('egg2shinychance').placeholder = contents.save.breeding.eggList[1].shinyChance;
+                    }
                     //      3
-                    document.getElementById('egg3name').placeholder = contents.save.breeding.eggList[2].pokemon;
-                    document.getElementById('egg3totalsteps').placeholder = contents.save.breeding.eggList[2].totalSteps;
-                    document.getElementById('egg3steps').placeholder = contents.save.breeding.eggList[2].steps;
-                    document.getElementById('egg3shinychance').placeholder = contents.save.breeding.eggList[2].shinyChance;
+                    if (contents.save.breeding.eggList[2].pokemon !== 'MissingNo.') {
+                        document.getElementById('egg3name').placeholder = contents.save.breeding.eggList[2].pokemon;
+                        document.getElementById('egg3totalsteps').placeholder = contents.save.breeding.eggList[2].totalSteps;
+                        document.getElementById('egg3steps').placeholder = contents.save.breeding.eggList[2].steps;
+                        document.getElementById('egg3shinychance').placeholder = contents.save.breeding.eggList[2].shinyChance;
+                    }
                     //      4
-                    document.getElementById('egg4name').placeholder = contents.save.breeding.eggList[3].pokemon;
-                    document.getElementById('egg4totalsteps').placeholder = contents.save.breeding.eggList[3].totalSteps;
-                    document.getElementById('egg4steps').placeholder = contents.save.breeding.eggList[3].steps;
-                    document.getElementById('egg4shinychance').placeholder = contents.save.breeding.eggList[3].shinyChance;
+                    if (contents.save.breeding.eggList[3].pokemon !== 'MissingNo.') {
+                        document.getElementById('egg4name').placeholder = contents.save.breeding.eggList[3].pokemon;
+                        document.getElementById('egg4totalsteps').placeholder = contents.save.breeding.eggList[3].totalSteps;
+                        document.getElementById('egg4steps').placeholder = contents.save.breeding.eggList[3].steps;
+                        document.getElementById('egg4shinychance').placeholder = contents.save.breeding.eggList[3].shinyChance;
+                    }
 
                     document.getElementById('version').innerHTML = 'Actual version : ' + contents.save.update.version;
                 }
