@@ -102,7 +102,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md border">
-                                            <h6>Egg 1</h6>
+                                            <h6 class="text-center">Egg 1</h6>
                                             <label for="egg1name" class="col-form-label">Pokemon</label>
                                             <input type="text" class="form-control" id="egg1name" placeholder="">
                                             <label for="egg1totalsteps" class="col-form-label">Total steps</label>
@@ -115,16 +115,43 @@
                                                 placeholder="">
                                         </div>
                                         <div class="col-md border">
-                                            <h6>Egg 2</h6>
-                                            2
+                                            <h6 class="text-center">Egg 2</h6>
+                                            <label for="egg2name" class="col-form-label">Pokemon</label>
+                                            <input type="text" class="form-control" id="egg2name" placeholder="">
+                                            <label for="egg2totalsteps" class="col-form-label">Total steps</label>
+                                            <input type="number" class="form-control" id="egg2totalsteps"
+                                                placeholder="">
+                                            <label for="egg2steps" class="col-form-label">Current steps</label>
+                                            <input type="number" class="form-control" id="egg2steps" placeholder="">
+                                            <label for="egg2shinychance" class="col-form-label">Shiny chances</label>
+                                            <input type="number" class="form-control" id="egg2shinychance"
+                                                placeholder="">
                                         </div>
                                         <div class="col-md border">
-                                            <h6>Egg 3</h6>
-                                            3
+                                            <h6 class="text-center">Egg 3</h6>
+                                            <label for="egg3name" class="col-form-label">Pokemon</label>
+                                            <input type="text" class="form-control" id="egg3name" placeholder="">
+                                            <label for="egg3totalsteps" class="col-form-label">Total steps</label>
+                                            <input type="number" class="form-control" id="egg3totalsteps"
+                                                placeholder="">
+                                            <label for="egg3steps" class="col-form-label">Current steps</label>
+                                            <input type="number" class="form-control" id="egg3steps" placeholder="">
+                                            <label for="egg3shinychance" class="col-form-label">Shiny chances</label>
+                                            <input type="number" class="form-control" id="egg3shinychance"
+                                                placeholder="">
                                         </div>
                                         <div class="col-md border">
-                                            <h6>Egg 4</h6>
-                                            4
+                                            <h6 class="text-center">Egg 4</h6>
+                                            <label for="egg4name" class="col-form-label">Pokemon</label>
+                                            <input type="text" class="form-control" id="egg4name" placeholder="">
+                                            <label for="egg4totalsteps" class="col-form-label">Total steps</label>
+                                            <input type="number" class="form-control" id="egg4totalsteps"
+                                                placeholder="">
+                                            <label for="egg4steps" class="col-form-label">Current steps</label>
+                                            <input type="number" class="form-control" id="egg4steps" placeholder="">
+                                            <label for="egg4shinychance" class="col-form-label">Shiny chances</label>
+                                            <input type="number" class="form-control" id="egg4shinychance"
+                                                placeholder="">
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +215,7 @@
                 r.onload = function (e) {
                     var content_b64 = e.target.result;
                     try {
-                        var contents = JSON.parse(atob(content_b64));
+                        var contents = JSON.parse(atob(content_b64));10
                     } catch (err) {
 
                         document.getElementById('load-error').removeAttribute("hidden");
@@ -208,10 +235,26 @@
                     document.getElementById('background').placeholder = contents.save.profile.background;
 
                     // eggs
+                    //      1
                     document.getElementById('egg1name').placeholder = contents.save.breeding.eggList[0].pokemon;
                     document.getElementById('egg1totalsteps').placeholder = contents.save.breeding.eggList[0].totalSteps;
                     document.getElementById('egg1steps').placeholder = contents.save.breeding.eggList[0].steps;
                     document.getElementById('egg1shinychance').placeholder = contents.save.breeding.eggList[0].shinyChance;
+                    //      2
+                    document.getElementById('egg2name').placeholder = contents.save.breeding.eggList[1].pokemon;
+                    document.getElementById('egg2totalsteps').placeholder = contents.save.breeding.eggList[1].totalSteps;
+                    document.getElementById('egg2steps').placeholder = contents.save.breeding.eggList[1].steps;
+                    document.getElementById('egg2shinychance').placeholder = contents.save.breeding.eggList[1].shinyChance;
+                    //      3
+                    document.getElementById('egg3name').placeholder = contents.save.breeding.eggList[2].pokemon;
+                    document.getElementById('egg3totalsteps').placeholder = contents.save.breeding.eggList[2].totalSteps;
+                    document.getElementById('egg3steps').placeholder = contents.save.breeding.eggList[2].steps;
+                    document.getElementById('egg3shinychance').placeholder = contents.save.breeding.eggList[2].shinyChance;
+                    //      4
+                    document.getElementById('egg4name').placeholder = contents.save.breeding.eggList[3].pokemon;
+                    document.getElementById('egg4totalsteps').placeholder = contents.save.breeding.eggList[3].totalSteps;
+                    document.getElementById('egg4steps').placeholder = contents.save.breeding.eggList[3].steps;
+                    document.getElementById('egg4shinychance').placeholder = contents.save.breeding.eggList[3].shinyChance;
 
                     document.getElementById('version').innerHTML = 'Actual version : ' + contents.save.update.version;
                 }
@@ -243,6 +286,7 @@
             }
 
             // eggs
+            //      1
             if (document.getElementById('egg1name').value) {
                 updated_content.save.breeding.eggList[0].pokemon = document.getElementById('egg1name').value;
             }
@@ -254,6 +298,48 @@
             }
             if (document.getElementById('egg1shinychance').value) {
                 updated_content.save.breeding.eggList[0].shinyChance = document.getElementById('egg1shinychance').value
+            }
+            
+            //      2
+            if (document.getElementById('egg2name').value) {
+                updated_content.save.breeding.eggList[1].pokemon = document.getElementById('egg2name').value;
+            }
+            if (document.getElementById('egg2totalsteps').value) {
+                updated_content.save.breeding.eggList[1].totalSteps = document.getElementById('egg2totalsteps').value;
+            }
+            if (document.getElementById('egg2steps').value) {
+                updated_content.save.breeding.eggList[1].steps = document.getElementById('egg2steps').value;
+            }
+            if (document.getElementById('egg2shinychance').value) {
+                updated_content.save.breeding.eggList[1].shinyChance = document.getElementById('egg2shinychance').value
+            }
+
+            //      3
+            if (document.getElementById('egg3name').value) {
+                updated_content.save.breeding.eggList[2].pokemon = document.getElementById('egg3name').value;
+            }
+            if (document.getElementById('egg3totalsteps').value) {
+                updated_content.save.breeding.eggList[2].totalSteps = document.getElementById('egg3totalsteps').value;
+            }
+            if (document.getElementById('egg3steps').value) {
+                updated_content.save.breeding.eggList[2].steps = document.getElementById('egg3steps').value;
+            }
+            if (document.getElementById('egg3shinychance').value) {
+                updated_content.save.breeding.eggList[2].shinyChance = document.getElementById('egg3shinychance').value
+            }
+
+            //      4
+            if (document.getElementById('egg4name').value) {
+                updated_content.save.breeding.eggList[3].pokemon = document.getElementById('egg4name').value;
+            }
+            if (document.getElementById('egg4totalsteps').value) {
+                updated_content.save.breeding.eggList[3].totalSteps = document.getElementById('egg4totalsteps').value;
+            }
+            if (document.getElementById('egg4steps').value) {
+                updated_content.save.breeding.eggList[3].steps = document.getElementById('egg4steps').value;
+            }
+            if (document.getElementById('egg4shinychance').value) {
+                updated_content.save.breeding.eggList[3].shinyChance = document.getElementById('egg4shinychance').value
             }
 
             j.href = URL.createObjectURL(
