@@ -13,7 +13,6 @@
     <div class="container-md">
         <h1 class="text-center">Pokéclicker Cheat Engine</h1>
 
-
         <div class="text-center">
             <img src="https://www.pokeclicker.com/assets/images/pokeclickerlogo.png" width="200" alt="logo" />
             <div class="alert alert-warning" role="alert">
@@ -21,14 +20,7 @@
             </div>
         </div>
 
-        <div class="text-center">
-            <span class="badge badge-pill badge-light">
-                <a href="https://github.com/CorentinLeGuen">Made by CorentinLeGuen - Free to use, reproduce, update &
-                    share</a>
-            </span>
-        </div>
-
-        <div class="mb-3">
+        <div id="toggle-head" class="mb-3">
             <label for="fileinput" class="form-label"></label>
             <input class="form-control" type="file" id="fileinput">
         </div>
@@ -110,7 +102,7 @@
                             <div class="mb-3 row">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md border">
+                                        <div class="col-md">
                                             <h6 class="text-center">Egg 1</h6>
                                             <label for="egg1name" class="col-form-label">Pokemon</label>
                                             <input type="text" class="form-control" id="egg1name" placeholder="">
@@ -123,7 +115,7 @@
                                             <input type="number" class="form-control" id="egg1shinychance"
                                                 placeholder="">
                                         </div>
-                                        <div class="col-md border">
+                                        <div class="col-md">
                                             <h6 class="text-center">Egg 2</h6>
                                             <label for="egg2name" class="col-form-label">Pokemon</label>
                                             <input type="text" class="form-control" id="egg2name" placeholder="">
@@ -136,7 +128,7 @@
                                             <input type="number" class="form-control" id="egg2shinychance"
                                                 placeholder="">
                                         </div>
-                                        <div class="col-md border">
+                                        <div class="col-md">
                                             <h6 class="text-center">Egg 3</h6>
                                             <label for="egg3name" class="col-form-label">Pokemon</label>
                                             <input type="text" class="form-control" id="egg3name" placeholder="">
@@ -149,7 +141,7 @@
                                             <input type="number" class="form-control" id="egg3shinychance"
                                                 placeholder="">
                                         </div>
-                                        <div class="col-md border">
+                                        <div class="col-md">
                                             <h6 class="text-center">Egg 4</h6>
                                             <label for="egg4name" class="col-form-label">Pokemon</label>
                                             <input type="text" class="form-control" id="egg4name" placeholder="">
@@ -208,6 +200,13 @@
                 </div>
             </div>
         </span>
+
+        <div class="text-center">
+            <span class="badge badge-pill badge-light">
+                <a href="https://github.com/CorentinLeGuen">Made by CorentinLeGuen - Free to use, reproduce, update &
+                    share</a>
+            </span>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -233,7 +232,8 @@
 
                     updated_content = contents;
 
-                    document.getElementById('toggle').removeAttribute("hidden")
+                    document.getElementById('toggle').removeAttribute("hidden");
+                    document.getElementById('toggle-head').style.display = "none";
 
                     // player
                     document.getElementById('playername').placeholder = contents.save.profile.name;
