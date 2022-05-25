@@ -6,6 +6,6 @@ You can visite my [github.io](https://corentinleguen.github.io/) for a live vers
 
 ## Screenshots
 
-![main page](img/mainpage.png)
+[![main page](img/mainpage.png)](https://corentinleguen.github.io/)
 
-![example page](img/examplepage.png)
+[![example page](img/examplepage.png)](https://corentinleguen.github.io/)
